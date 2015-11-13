@@ -4,5 +4,6 @@ create table books (
   author text,
   title text,
   last_location text,
-  current_location text
+  current_location text,
+  cover_url text
 );
