@@ -2,7 +2,7 @@ import sqlite3
 from contextlib import closing
 from hashlib import sha256
 
-from flask import Flask, g, abort, render_template
+from flask import Flask, g, abort, render_template, request
 
 from book import Book
 
@@ -15,11 +15,11 @@ def main_page():
     return 'You need to specify an actual ISBN to do this!'
 
 
-@application.route('/book/<isbn>/<auth_code>')
+@application.route('/book/<isbn>/<auth_code>/')
 def show_book_info(isbn, auth_code):
     check_auth_code(isbn, auth_code)
     book = Book(isbn)
-    return render_template('book_info.html', book=book)
+    return render_book_info(book)
 
 
 def check_auth_code(isbn, auth_code):
@@ -28,6 +28,24 @@ def check_auth_code(isbn, auth_code):
     if expected_auth_code != auth_code:
         application.logger.warning("Invalid auth code for a request; isbn='%s', got_code='%s', expected_code='%s'", isbn, auth_code, expected_auth_code)
         abort(403)
+
+
+def render_book_info(book):
+    return render_template('book_info.html', book=book, shelves=application.config['SHELVES'])
+
+
+@application.route('/book/<isbn>/<auth_code>/update_location', methods=['POST'])
+def update_location(isbn, auth_code):
+    check_auth_code(isbn, auth_code)
+    book = Book(isbn)
+
+    if 'update_person' in request.form:
+        new_location = request.form['location']
+    else:
+        new_location = request.form['shelf']
+    book.update_location(new_location)
+
+    return render_book_info(book)
 
 
 @application.before_request

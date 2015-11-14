@@ -7,5 +7,24 @@
     <h2>{{ book.author }}</h2>
     <ul>
         <li><strong>currently at:</strong> {{ book.current_location|default('location unknown!', true) }}</li>
+        {% if book.last_location %}
+            <li><strong>before that, it was at:</strong> {{ book.last_location }}</li>
+        {% endif %}
     </ul>
+    <h2>Change location</h2>
+    <form method="post" action="update_location">
+    <ul>
+        <li><strong>I have this book!</strong> my name is <input type="text" name="location"/> <input type="submit" name="update_person" value="Save"/></li>
+        <li>or</li>
+        <li>
+            <strong>It's at </strong>
+            <select name="shelf">
+                {% for shelf in shelves %}
+                    <option value="{{ shelf }}">{{ shelf }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="update_shelf" value="Save"/>
+        </li>
+    </ul>
+    </form>
 {% endblock %}

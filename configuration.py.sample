@@ -1,3 +1,4 @@
 DATABASE = 'tmp/testdb.db'
 DEBUG = True
 SECRET_KEY = 'development key'
+SHELVES = ['attic', 'basement', 'living room']

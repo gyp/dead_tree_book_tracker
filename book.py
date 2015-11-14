@@ -59,3 +59,13 @@ class Book:
         g.db.execute('INSERT INTO books (isbn, author, title, cover_url) VALUES (?, ?, ?, ?)',
                      [self.isbn, self.author, self.title, self.cover_url])
         g.db.commit()
+
+    def update_location(self, new_location):
+        self.last_location = self.current_location
+        self.current_location = new_location
+        self._save_location_to_db()
+
+    def _save_location_to_db(self):
+        g.db.execute('UPDATE books SET last_location = ?, current_location = ? WHERE isbn = ?',
+                     [self.last_location, self.current_location, self.isbn])
+        g.db.commit()
