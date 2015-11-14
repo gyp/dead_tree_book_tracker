@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if book.cover_url %}
+        <img src="{{ book.cover_url }}"/>
+    {% endif %}
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.author }}</h2>
+    <ul>
+        <li><strong>currently at:</strong> {{ book.current_location|default('location unknown!', true) }}</li>
+    </ul>
+{% endblock %}

@@ -2,7 +2,7 @@ import sqlite3
 from contextlib import closing
 from hashlib import sha256
 
-from flask import Flask, g, abort
+from flask import Flask, g, abort, render_template
 
 from book import Book
 
@@ -19,8 +19,7 @@ def main_page():
 def show_book_info(isbn, auth_code):
     check_auth_code(isbn, auth_code)
     book = Book(isbn)
-    print(book.title)
-    return 'this is where we will display info about the book with the ISBN %s' % isbn
+    return render_template('book_info.html', book=book)
 
 
 def check_auth_code(isbn, auth_code):
