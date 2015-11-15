@@ -1,3 +1,2 @@
-DATABASE = 'tmp/testdb.db'
 DEBUG = True
 SHELVES = ['attic', 'basement', 'living room']
