@@ -1,0 +1,11 @@
+#calibre_book_details_frame {
+    width: 50%;
+    height: 800px;
+    float: left;
+    overflow-y: hidden;
+    margin-right: 20px;
+}
+
+#location_actions {
+    list-style: none;
+}

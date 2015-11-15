@@ -1,19 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
-    {% if book.cover_url %}
-        <img src="{{ book.cover_url }}"/>
-    {% endif %}
-    <h1>{{ book.title }}</h1>
-    <h2>{{ book.author }}</h2>
-    <ul>
-        <li><strong>currently at:</strong> {{ book.current_location|default('location unknown!', true) }}</li>
-        {% if book.last_location %}
-            <li><strong>before that, it was at:</strong> {{ book.last_location }}</li>
-        {% endif %}
-    </ul>
-    <h2>Change location</h2>
+    <iframe id="calibre_book_details_frame" src="{{ calibre_url }}/browse/book/{{ book.id }}" scrolling="no" seamless="seamless"></iframe>
+
+    <h1>Update book location</h1>
+
+    <h2>Current location: {{ book.current_location }}</h2>
+    NOTE: location information in Calibre might take a while to be updated.
+
     <form method="post" action="update_location">
-    <ul>
+    <ul id="location_actions">
         <li><strong>I have this book!</strong> my name is <input type="text" name="location"/> <input type="submit" name="update_person" value="Save"/></li>
         <li>or</li>
         <li>
@@ -27,4 +22,5 @@
         </li>
     </ul>
     </form>
+
 {% endblock %}

@@ -10,17 +10,17 @@ def main_page():
     return 'You need to specify a book ID to do this!'
 
 
-@application.route('/<id>/')
+@application.route('/<int:id>/')
 def show_book_info(id):
     book = Book(id)
     return render_book_info(book)
 
 
 def render_book_info(book):
-    return render_template('book_info.html', book=book, shelves=application.config['SHELVES'])
+    return render_template('book_info.html', book=book, shelves=application.config['SHELVES'], calibre_url=application.config['CALIBRE_URL'])
 
 
-@application.route('/<id>/update_location', methods=['POST'])
+@application.route('/<int:id>/update_location', methods=['POST'])
 def update_location(id):
     book = Book(id)
 
