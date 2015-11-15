@@ -21,6 +21,9 @@ class Book:
         except KeyError:
             self.current_location = None
 
+        tags = book_in_calibre_db['tags']
+        self.is_ebook = ('E-book' in tags or 'Kindle' in tags)
+
     def update_location(self, new_location):
         self.last_location = self.current_location
         self.current_location = new_location

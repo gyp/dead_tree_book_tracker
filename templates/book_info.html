@@ -4,6 +4,10 @@
 
     <h1>Update book location</h1>
 
+    {% if book.is_ebook %}
+    <h2>It looks like it's an e-book. Download it directly from Calibre by clicking on the cover or borrow a company
+    Kindle from the reception if it's in a Kindle format.</h2>
+    {% else %}
     <h2>Current location: {{ book.current_location }}</h2>
     NOTE: location information in Calibre might take a while to be updated.
 
@@ -22,5 +26,5 @@
         </li>
     </ul>
     </form>
-
+    {% endif %}
 {% endblock %}
