@@ -15,28 +15,18 @@ def main_page():
     return 'You need to specify an actual ISBN to do this!'
 
 
-@application.route('/book/<isbn>/<auth_code>/')
-def show_book_info(isbn, auth_code):
-    check_auth_code(isbn, auth_code)
+@application.route('/book/<isbn>/')
+def show_book_info(isbn):
     book = Book(isbn)
     return render_book_info(book)
-
-
-def check_auth_code(isbn, auth_code):
-    auth_string = '%s XXX %s' % (isbn, application.secret_key)
-    expected_auth_code = sha256(auth_string.encode('utf-8')).hexdigest()[:10]
-    if expected_auth_code != auth_code:
-        application.logger.warning("Invalid auth code for a request; isbn='%s', got_code='%s', expected_code='%s'", isbn, auth_code, expected_auth_code)
-        abort(403)
 
 
 def render_book_info(book):
     return render_template('book_info.html', book=book, shelves=application.config['SHELVES'])
 
 
-@application.route('/book/<isbn>/<auth_code>/update_location', methods=['POST'])
-def update_location(isbn, auth_code):
-    check_auth_code(isbn, auth_code)
+@application.route('/book/<isbn>/update_location', methods=['POST'])
+def update_location(isbn):
     book = Book(isbn)
 
     if 'update_person' in request.form:
