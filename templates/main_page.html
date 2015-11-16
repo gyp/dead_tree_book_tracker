@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Welcome to the Balabit Library!</h1>
+    <h2>
+        I want to borrow or return a book!
+        Book ID: <input type="text" id="book_id"/>
+        <input type="button" id="book_go_button" value="Go!" onclick="window.location = '/' + document.getElementById('book_id').value"/>
+    </h2>
+{% endblock %}

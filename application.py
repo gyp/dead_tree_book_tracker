@@ -7,7 +7,7 @@ application.config.from_pyfile('configuration.py')
 
 @application.route('/')
 def main_page():
-    return 'You need to specify a book ID to do this!'
+    return render_template('main_page.html')
 
 
 @application.route('/<int:id>/')
