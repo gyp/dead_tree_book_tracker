@@ -5,12 +5,14 @@ __author__ = 'gyp'
 
 class Calibre:
     @staticmethod
-    def get_book_data(book_id):
+    def get_book_data(library_path, book_id):
         book_id = int(book_id)
-        json_results = Calibre._call_calibredb("list",
-                                              "--for-machine",
-                                              "-s", "id:%d" % book_id,
-                                              "-f", "all")
+	dbargs = ["list", "--for-machine",
+                  "-s", "id:%d" % book_id,
+                  "-f", "all" ]
+        if library_path:
+            dbargs +=  ["--with-library", "%s" % library_path]
+        json_results = Calibre._call_calibredb(dbargs)
         results = json.loads(json_results)
         if len(results) == 0:
             return None
@@ -18,8 +20,8 @@ class Calibre:
         return results[0]
 
     @staticmethod
-    def _call_calibredb(*args):
-        return subprocess.check_output(["calibredb"] + list(args)).decode()
+    def _call_calibredb(parameters):
+        return subprocess.check_output(["calibredb"] + list(parameters)).decode()
 
     @staticmethod
     def set_custom(book_id, field_name, field_value):

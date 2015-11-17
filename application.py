@@ -12,7 +12,10 @@ def main_page():
 
 @application.route('/<int:id>/')
 def show_book_info(id):
-    book = Book(id)
+    library_path = None
+    if application.config.has_key('LIBRARY_PATH'):
+        library_path = application.config['LIBRARY_PATH']
+    book = Book(library_path, id)
     return render_book_info(book)
 
 
