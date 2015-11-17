@@ -2,3 +2,4 @@ DEBUG = True
 SHELVES = ['attic', 'basement', 'living room']
 CALIBRE_URL = "http://localhost:8080/"
 LIBRARY_PATH = "/home/calibre/calibre-library"
+GUIDE_URL = "http://example.com/guide"

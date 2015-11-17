@@ -6,4 +6,5 @@
         Book ID: <input type="text" id="book_id" onkeydown="if (event.keyCode == 13) document.getElementById('book_go_button').click()"/>
         <input type="button" id="book_go_button" value="Go!" onclick="window.location = '/' + document.getElementById('book_id').value"/>
     </h2>
+    <h1><a href="{{ guide_url }}">What's this library thing, anyway?</a></h1>
 {% endblock %}
