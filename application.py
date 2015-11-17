@@ -1,5 +1,6 @@
-from flask import Flask, g, abort, render_template, request
+from flask import Flask, g, render_template, request
 from book import Book
+from calibre import Calibre
 
 application = Flask(__name__)
 application.config.from_pyfile('configuration.py')
@@ -12,8 +13,16 @@ def main_page():
 
 @application.route('/<int:id>/')
 def show_book_info(id):
-    book = Book(id)
+    book = Book(g.calibre, id)
     return render_book_info(book)
+
+
+@application.before_request
+def before_request():
+    library_path = None
+    if 'LIBRARY_PATH' in application.config:
+        library_path = application.config['LIBRARY_PATH']
+    g.calibre = Calibre(library_path)
 
 
 def render_book_info(book):
@@ -22,7 +31,7 @@ def render_book_info(book):
 
 @application.route('/<int:id>/update_location', methods=['POST'])
 def update_location(id):
-    book = Book(id)
+    book = Book(g.calibre, id)
 
     if 'update_person' in request.form:
         new_location = request.form['location']

@@ -1,15 +1,15 @@
-from flask import g, current_app, abort
-from calibre import Calibre
+from flask import current_app, abort
 __author__ = 'gyp'
 
 
 class Book:
-    def __init__(self, id):
+    def __init__(self, calibre, id):
+        self._calibre = calibre
         self.id = id
         self._load_attributes_from_calibre()
 
     def _load_attributes_from_calibre(self):
-        book_in_calibre_db = Calibre.get_book_data(self.id)
+        book_in_calibre_db = self._calibre.get_book_data(self.id)
         if book_in_calibre_db is None:
             current_app.logger.warning('Requested book page with unknown ID, id=%s', self.id)
             abort(404)
@@ -31,6 +31,6 @@ class Book:
 
     def _save_location_to_db(self):
         if self.current_location:
-            Calibre.set_custom(self.id, "location", self.current_location)
+            self._calibre.set_custom(self.id, "location", self.current_location)
         if self.last_location:
-            Calibre.set_custom(self.id, "last_location", self.last_location)
+            self._calibre.set_custom(self.id, "last_location", self.last_location)
