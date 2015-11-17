@@ -1,31 +1,48 @@
 {% extends "layout.html" %}
 {% block body %}
-    <iframe id="calibre_book_details_frame" src="{{ calibre_url }}/browse/book/{{ book.id }}" scrolling="no" seamless="seamless"></iframe>
+<div class="grid-container">
+    <div id="leftcontent" class="grid-50 mobile-grid-100">
+        <iframe id="calibre_book_details_frame" class="grid-100 mobile-grid-100" src="{{ calibre_url }}/browse/book/{{ book.id }}" scrolling="no" seamless="seamless"></iframe>
+    </div>
 
-    <h1>Update book location</h1>
+    <div id="rightcontent" class="grid-50 mobile-grid-100">
+        <h2>Update book location</h2>
 
-    {% if book.is_ebook %}
-    <h2>It looks like it's an e-book. Download it directly from Calibre by clicking on the cover or borrow a company
-    Kindle from the reception if it's in a Kindle format.</h2>
-    {% else %}
-    <h2>Current location: {{ book.current_location }}</h2>
-    NOTE: location information in Calibre might take a while to be updated.
+        {% if book.is_ebook %}
+        <p>It looks like it's an e-book. Download it directly from Calibre by clicking on the cover or borrow a company
+        Kindle from the reception if it's in a Kindle format.</p>
+        {% else %}
+        <p class="location">Current location: {{ book.current_location }}</p>
+        <p class="note">NOTE: location information in Calibre might take a while to be updated.</p>
 
-    <form method="post" action="update_location">
-    <ul id="location_actions">
-        <li><strong>I have this book!</strong> my name is <input type="text" name="location"/> <input type="submit" name="update_person" value="Save"/></li>
-        <li>or</li>
-        <li>
-            <strong>It's at </strong>
-            <select name="shelf">
-                {% for shelf in shelves %}
-                    <option value="{{ shelf }}">{{ shelf }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" name="update_shelf" value="Save"/>
-        </li>
-    </ul>
-    </form>
-    {% endif %}
-    <h1><a href="{{ calibre_url }}">&lt;&lt; back to Calibre</a></h1>
+        <form method="post" action="update_location">
+        <ul class="input-list style-2 grid-100 mobile-grid-100">
+            <li class="grid-100 mobile-grid-100">
+                <p class="grid-30 mobile-grid-100 nopadding">I have this book! I am:</p>
+                <div class="grid-70">
+                    <input type="text" name="location" class="grid-80 mobile-grid-80"/>
+                    <input type="submit" name="update_person" value="Save" class="grid-20 savebtn"/>
+                </div>
+            </li>
+            <li class="grid-100 mobile-grid-100 divider">- OR -</li>
+            <li class="grid-100 mobile-grid-100">
+                <p class="grid-30 mobile-grid-100 nopadding">It's at:</p>
+                <div class="grid-70">
+                    <div class="styled-select grid-80 mobile-grid-80">
+                        <select name="shelf" >
+                        {% for shelf in shelves %}
+                            <option value="{{ shelf }}">{{ shelf }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <input type="submit" name="update_shelf" value="Save" class="grid-20 savebtn"/>
+                </div>
+            </li>
+        </ul>
+        </form>
+        {% endif %}
+        <p class="emp biglink grid-100"><a class="emp biglink grid-100" href="{{ calibre_url }}">&lt;&lt; Return to Calibre</a></p>
+    </div>
+
+</div>
 {% endblock %}

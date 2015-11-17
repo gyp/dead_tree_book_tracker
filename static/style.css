@@ -1,10 +1,218 @@
-#calibre_book_details_frame {
-    width: 50%;
-    height: 800px;
-    float: left;
-    overflow-y: hidden;
-    margin-right: 20px;
+body {
+  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  background-color: #fefefe;
+  margin: 0px;
+  margin-bottom: 30px;
+  padding: 0px;
 }
+
+#header {
+  background-color: #cccccc;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  vertical-align: middle;
+  height: 60px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#logo {
+  float: left;
+  width: 21.821122%;
+  max-width: none;
+  height: 60px;
+  clear: none;
+  vertical-align: middle;
+}
+
+#headtitle {
+  color: #ffffff;
+}
+
+#logo-container {
+  vertical-align: middle;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 32px;
+}
+
+h2 {
+  color: #000000;
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
+  padding: 0px;
+}
+
+.nopadding {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+#calibre_book_details_frame {
+    height: 800px;
+    float: none;
+    overflow-y: hidden;
+    border-style: none;
+}
+
+#header {
+    float: none;
+    height: 80px;
+    margin-left: auto;
+    margin-top: 0px;
+    clear: none;
+    width: 100%;
+    background-color: #8B8B8B;
+    margin-right: auto;
+}
+
+#rightcontent {
+  padding-left: 15px;
+}
+
+.location {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.note {
+  font-style: italic;
+  color: #999999;
+}
+
+.emp {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 0;
+  font-size: 19px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  -ms-border-radius: none;
+  -o-border-radius: none;
+  border-radius: none;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+
+/* lists */
+ul.input-list {
+  list-style: none;
+  margin: 0 -10px;
+  padding: 0;
+}
+ul.input-list li {
+  display: block;
+  padding: 0 10px;
+  width: 100%;
+  float: left;
+}
+
+@media all and (max-width: 800px) {
+  ul.input-list {
+    margin: 0;
+  }
+  ul.input-list li {
+    padding: 0;
+    width: 100%;
+    float: none;
+    margin-bottom: 10px;
+  }
+}
+
+.style-2 input[type="text"] {
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  -webkit-transition: border 0.3s;
+  -moz-transition: border 0.3s;
+  -o-transition: border 0.3s;
+  transition: border 0.3s;
+}
+.style-2 input[type="text"]:focus, .style-2 input[type="text"].focus {
+  border: solid 5px #969696;
+}
+
+.savebtn {
+  -moz-box-shadow:inset 0px 0px 0px 0px #cf866c;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #cf866c;
+	box-shadow:inset 0px 0px 0px 0px #cf866c;
+	background-color:#c9c9c9;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:16px;
+	padding:17px 16px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #854629;
+  border: 0px;
+}
+
+.savebtn:hover {
+	background-color:#474747;
+  color: #ffffff;
+}
+.savebtn:active {
+	position:relative;
+	top:1px;
+}
+
+.divider {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.styled-select select {
+   background: transparent;
+   padding: 6px;
+   font-size: 19px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 50px;
+   -webkit-appearance: none;
+   margin: 0px;
+   }
+
+.styled-select {
+    padding: 0px;
+    height: 52px;
+    overflow: hidden;
+    background: #c9c9c9;
+    border: 0px;
+    }
+
+.biglink {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #257FC1;
+}
+
 
 #location_actions {
     list-style: none;

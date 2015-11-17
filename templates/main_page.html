@@ -1,10 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>Welcome to the Balabit Library!</h1>
-    <h2>
-        I want to borrow or return a book!
-        Book ID: <input type="text" id="book_id" onkeydown="if (event.keyCode == 13) document.getElementById('book_go_button').click()"/>
-        <input type="button" id="book_go_button" value="Go!" onclick="window.location = '/' + document.getElementById('book_id').value"/>
-    </h2>
-    <h1><a href="{{ guide_url }}">What's this library thing, anyway?</a></h1>
+<div class="grid-container">
+<div class="grid-50 mobile-grid-100 push-25">
+    <h2>Welcome to the Balabit Library!</h2>
+    <p>If you took a book from the library, you can mark that you took it here. You will need the ID number of the book which you will find on the back cover.</p>
+    <ul class="input-list style-2 grid-100 mobile-grid-100">
+        <li class="grid-100 mobile-grid-100">
+            <p class="grid-30 mobile-grid-100 nopadding">Book ID:</p>
+            <div class="grid-70">
+                <input type="text" id="book_id" class="grid-80 mobile-grid-80" onkeydown="if (event.keyCode == 13) document.getElementById('book_go_button').click()"/>
+                <input type="button" id="book_go_button" value="Go!" class="grid-20 savebtn" onclick="window.location = '/' + document.getElementById('book_id').value"/>
+            </div>
+        </li>
+    </ul>
+    <p class="emp biglink grid-100"><a class="emp biglink grid-100" href="{{ calibre_url }}">Browse books</a></p>
+    <p class="emp biglink grid-100"><a class="emp biglink grid-100" href="{{ guide_url }}">What's this library thing, anyway?</a></p>
+</div>
+</div>
 {% endblock %}
