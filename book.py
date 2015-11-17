@@ -4,12 +4,13 @@ __author__ = 'gyp'
 
 
 class Book:
-    def __init__(self, id):
+    def __init__(self, library_path, id):
         self.id = id
+        self.library_path = library_path
         self._load_attributes_from_calibre()
 
     def _load_attributes_from_calibre(self):
-        book_in_calibre_db = Calibre.get_book_data(self.id)
+        book_in_calibre_db = Calibre.get_book_data(self.library_path, self.id)
         if book_in_calibre_db is None:
             current_app.logger.warning('Requested book page with unknown ID, id=%s', self.id)
             abort(404)
