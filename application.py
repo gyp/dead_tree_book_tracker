@@ -8,7 +8,7 @@ application.config.from_pyfile('configuration.py')
 
 @application.route('/')
 def main_page():
-    return render_template('main_page.html', guide_url=application.config['GUIDE_URL'])
+    return render_template('main_page.html', guide_url=application.config['GUIDE_URL'], calibre_url=application.config['CALIBRE_URL'])
 
 
 @application.route('/<int:id>/')
